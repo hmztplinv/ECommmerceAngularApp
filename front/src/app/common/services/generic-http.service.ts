@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class GenericHttpService {
 
-  api: string = "http://localhost:3000/";
+  api: string = "http://localhost:5000/api";
 
   constructor(private httpClient: HttpClient,private toastr:ToastrService,private spinner:NgxSpinnerService) { }
 
