@@ -24,13 +24,12 @@ export class CategoryService {
     let model={name:name};
     this.httpService.post<MessageResponseModel>('categories/add',model,res=>callBack(res));
   }
-  update(id:string,name:string,callBack:(res:MessageResponseModel)=>void){
-    let model={_id: id,name:name};
-    this.httpService.post<MessageResponseModel>('categories/update/'+id,model,res=>callBack(res));
+  update(model:CategoryModel,callBack:(res:MessageResponseModel)=>void){
+    this.httpService.post<MessageResponseModel>('categories/update/',model,res=>callBack(res));
   }
   removeById(id:string,callBack:(res:MessageResponseModel)=>void){
     let model={_id: id};
-    this.httpService.post<MessageResponseModel>('categories/removeById/'+id,model,res=>callBack(res));
+    this.httpService.post<MessageResponseModel>('categories/removeById/',model,res=>callBack(res));
   }
 
 }

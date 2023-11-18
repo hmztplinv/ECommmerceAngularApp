@@ -5,6 +5,7 @@ import { CategoryModel } from './models/category.model';
 import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from './services/category.service';
 import { NgForm } from '@angular/forms';
+import { SwalService } from 'src/app/common/services/swal.service';
 
 @Component({
   selector: 'app-categories',
@@ -14,9 +15,11 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-  categories:CategoryModel[]=[];
 
-  constructor(private toastr:ToastrService,private categoryService:CategoryService) { }
+  categories:CategoryModel[]=[];
+  updateCategory:CategoryModel=new CategoryModel();
+
+  constructor(private toastr:ToastrService,private categoryService:CategoryService,private swal:SwalService) { }
 
   ngOnInit(): void {
     this.getAll();
@@ -25,6 +28,31 @@ export class CategoriesComponent implements OnInit {
   getAll(){
     this.categoryService.getAll(res=>{
       this.categories=res;
+    });
+  }
+
+  get(model:CategoryModel){
+    this.updateCategory={...model};
+  }
+
+  update(form:NgForm){
+    if(form.valid){
+      this.categoryService.update(this.updateCategory,res=>{
+        this.toastr.success(res.message);
+        let element=document.getElementById('updateModalCloseButton');
+        element?.click();
+        form.reset();
+        this.getAll();
+      });
+    }
+  }
+
+  removeById(model: CategoryModel){
+    this.swal.callSwal(`${model.name} delete this`,"","Sil","",()=>{
+      this.categoryService.removeById(model._id, (res: any) => {
+        this.toastr.info(res.message);
+        this.getAll();
+      });
     });
   }
 
