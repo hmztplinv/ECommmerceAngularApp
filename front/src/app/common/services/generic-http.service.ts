@@ -21,7 +21,9 @@ export class GenericHttpService {
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);
-        this.toastr.error(err.message);
+        const errorResponse = err.error;
+        const errorMessage = errorResponse && errorResponse.message ? errorResponse.message : 'An unexpected error occurred';
+        this.toastr.error(errorMessage);
         this.spinner.hide();
       }
     });
@@ -36,7 +38,9 @@ export class GenericHttpService {
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);
-        this.toastr.error(err.message);
+        const errorResponse = err.error;
+        const errorMessage = errorResponse && errorResponse.message ? errorResponse.message : 'An unexpected error occurred';
+        this.toastr.error(errorMessage);
         this.spinner.hide();
       }
     });
