@@ -20,7 +20,7 @@
                 Add Category
             </button>
             <div class="col-md-4 mb-2" style="float: right;">
-                <input class="form-control" type="search" placeholder="Search...">
+                <input class="form-control" [(ngModel)]="search" type="search" placeholder="Search...">
             </div>
 
         </div>
@@ -34,7 +34,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let category of categories let index=index">
+                    <tr *ngFor="let category of categories | categoryPipe:search let index=index">
                         <td>{{index+1}}</td>
                         <td>{{category.name}}</td>
                         <td>
