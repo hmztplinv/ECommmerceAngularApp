@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ValidatorDirective } from '../directives/validator.directive';
 import { BlankComponent } from '../components/blank/blank.component';
+import { GenericTableComponent } from '../components/generic-table/generic-table.component';
 
 
 @NgModule({
@@ -13,14 +14,16 @@ import { BlankComponent } from '../components/blank/blank.component';
     FormsModule,
     RouterModule,
     ValidatorDirective,
-    BlankComponent
+    BlankComponent,
+    GenericTableComponent,
   ],
   exports: [
     CommonModule,
     FormsModule,
     RouterModule,
     ValidatorDirective,
-    BlankComponent
+    BlankComponent,
+    GenericTableComponent,
   ]
 })
 export class SharedModule { }
