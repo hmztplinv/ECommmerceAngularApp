@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ValidatorDirective } from '../directives/validator.directive';
+import { BlankComponent } from '../components/blank/blank.component';
 
 
 @NgModule({
@@ -11,13 +12,15 @@ import { ValidatorDirective } from '../directives/validator.directive';
     CommonModule,
     FormsModule,
     RouterModule,
-    ValidatorDirective
+    ValidatorDirective,
+    BlankComponent
   ],
   exports: [
     CommonModule,
     FormsModule,
     RouterModule,
-    ValidatorDirective
+    ValidatorDirective,
+    BlankComponent
   ]
 })
 export class SharedModule { }
