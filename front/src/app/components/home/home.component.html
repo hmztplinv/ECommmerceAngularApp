@@ -12,33 +12,33 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-8">
-                        <input [(ngModel)]="requestModel.search" type="search" class="form-control" placeholder="Search">
+                        <input [(ngModel)]="requestModel.searchText" type="search" class="form-control" placeholder="Search">
                     </div>
                     <div class="col-md-3">
                         <select [(ngModel)]="requestModel.priceFilter" class="form-control">
                             <option value="0">Sort by</option>
                             <option value="1">Incresing Price</option>
-                            <option value="2">Decreasing Price</option>
+                            <option value="-1">Decreasing Price</option>
                         </select>
                     </div>
                     <div class="col-md-1">
-                        <button class="btn btn-primary" style="margin-left: -20px;">Sort</button>
+                        <button (click)="getAll()" class="btn btn-primary" style="margin-left: -20px;">Sort</button>
                     </div>
                 </div>
             </div>
 
             <div class="row mt-2">
-                <div class="col-md-4">
+                <div class="col-md-4" *ngFor="let product of products let i=index">
                     <div class="card text-center">
                         <div class="card-header">
-                            <h4>Laptop</h4>
+                            <h4>{{product.name}}</h4>
                         </div>
                         <div class="card-body">
-                            <img src="https://media.istockphoto.com/id/479520746/tr/foto%C4%9Fraf/laptop-with-blank-screen-on-white.jpg?s=1024x1024&w=is&k=20&c=uJ7uhxeLqgePpGB7-ROiY5igSWczq1kNugQQw9QQGmw="
+                            <img [src]="'http://localhost:5000/' + product.imageUrls[0].path"
                             width="200" height="170" alt="">
                             <hr>
-                            <p>Stock : 100</p>
-                            <h6>Price : 1000 TL</h6>
+                            <p>Stock : {{product.stock}}</p>
+                            <h6>Price : {{product.price}} TL</h6>
                             <button class="btn btn-outline-success w-100">Add Basket</button>
                         </div>
                     </div>

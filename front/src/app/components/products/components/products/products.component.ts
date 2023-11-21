@@ -43,7 +43,7 @@ export class ProductsComponent implements OnInit {
   }
 
   search() {
-    if (this.request.search.length > 3) {
+    if (this.request.searchText.length > 3) {
       this.getAll(1);
     }
   }

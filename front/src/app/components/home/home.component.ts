@@ -3,6 +3,8 @@ import { SharedModule } from 'src/app/common/shared/shared.module';
 import { CategoryModel } from '../categories/models/category.model';
 import { CategoryService } from '../categories/services/category.service';
 import { RequestModel } from 'src/app/common/models/request.model';
+import { ProductService } from '../products/services/product.service';
+import { ProductModel } from '../products/models/product.model';
 
 @Component({
   selector: 'app-home',
@@ -15,11 +17,17 @@ export class HomeComponent implements OnInit{
 
   categories: CategoryModel[] = [];
   requestModel : RequestModel=new RequestModel();
+  products:ProductModel[]=[];
 
-  constructor(private categoryService:CategoryService) {}
+  constructor(private categoryService:CategoryService,private productService:ProductService) {}
 
   ngOnInit(): void {
     this.getCategories();
+    this.getAll();
+  }
+
+  getAll(){
+    this.productService.getAllForHomePage(this.requestModel,res => this.products = res);
   }
 
   getCategories() {
@@ -29,6 +37,7 @@ export class HomeComponent implements OnInit{
   changeCategory(categoryId:string,categoryName:string) {
     this.requestModel.categoryName = categoryName;
     this.requestModel.categoryId = categoryId;
+    this.getAll();
   }
 
 

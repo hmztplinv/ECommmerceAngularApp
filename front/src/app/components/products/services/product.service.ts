@@ -40,4 +40,9 @@ export class ProductService {
     this.httpService.post<MessageResponseModel>("products/removeImageById",model,res => callBack(res));
   }
 
+  getAllForHomePage(model:RequestModel,callBack:(res:ProductModel[])=>void){
+    this.httpService.post<ProductModel[]>("products/getAllForHome",model,res => callBack(res));
+
+  }
+
 }
