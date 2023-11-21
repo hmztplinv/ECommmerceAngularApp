@@ -1,0 +1,70 @@
+<app-blank title="Update Product" sectionTitle="Update Product">
+    <div class="row center">
+        <div class="col-md-6">
+            <form #updateForm="ngForm" (ngSubmit)="update(updateForm)">
+                <div class="form-group">
+                    <label for="name">Product Name</label>
+                    <input type="text" class="form-control"
+                           id="name" name="name" #name [appValidator]="name.validity.valid"
+                           [(ngModel)]="product.name" minlength="3" maxlength="250"
+                           required>
+                    <div class="invalid-feedback">
+                        Please enter a valid product name.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="categories">Categories</label>
+                    <select class="form-control" name="categoriesSelect" id="categoriesSelect" [(ngModel)]="product.categories" multiple #categoriesSelect>
+                        <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="stock">Stock</label>
+                    <input type="number" class="form-control"
+                           id="stock" #stock name="stock" [appValidator]="stock.validity.valid"
+                           [(ngModel)]="product.stock" min="0" max="1000"
+                           required>
+                    <div class="invalid-feedback">
+                        Please enter a valid stock.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" class="form-control"
+                           id="price" #price name="price" [appValidator]="price.validity.valid"
+                           [(ngModel)]="product.price" min="1" max="1000"
+                           required>
+                    <div class="invalid-feedback">
+                        Please enter a valid price.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="images">Images</label>
+                    <input type="file" class="form-control"
+                           id="images" #images name="images"
+                           ngModel multiple (change)="getImages($event)"
+                           >
+                </div>
+                <hr>
+                <div class="form-group">
+                    <p>Selected Images</p>
+                    <span (click)="deleteImage(product._id,i)" *ngFor="let image of product.imageUrls let i=index">
+                    <img [src]="'http://localhost:5000/' + image.path" width="100" class="m-2" alt="">
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-warning w-100">Update</button>
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+</app-blank>
+

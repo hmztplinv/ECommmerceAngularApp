@@ -35,12 +35,15 @@
             <td>{{ product.stock }}</td>
             <td>{{ product.createdDate | date:'dd.MM.yyyy HH:mm:sss' }}</td>
             <td>
-                <div class="form-check">
-                    <input type="checkbox" (change)="changeProductStatus(product._id)" id="flexCheckChecked" class="form-check-input" [(ngModel)]="product.isActive">
-                </div>
+                <button
+              class="btn"
+              [ngClass]="product.isActive ? 'btn-danger': 'btn-primary'"
+              (click)="changeProductStatus(product._id)">
+                {{product.isActive?'Passive': 'Active'}}
+            </button>
             </td>
             <td>
-                <button class="btn btn-outline-warning btn-sm" title="Update"><i class="fa fa-edit"></i></button>
+                <button routerLink="/products/update/{{product._id}}" class="btn btn-outline-warning btn-sm me-1" title="Update"><i class="fa fa-edit"></i></button>
                 <button (click)="removeById(product._id)" class="btn btn-outline-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></button>
             </td>
         </tr>

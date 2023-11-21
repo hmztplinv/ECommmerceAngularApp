@@ -25,8 +25,10 @@ export const routes: Routes = [
                 path: 'products/add',
                 loadComponent: () => import("./components/products/components/product-add/product-add.component").then(m => m.ProductAddComponent)
             },
-            
-
+            {
+                path: 'products/update/:value',
+                loadComponent: () => import("./components/products/components/product-update/product-update.component").then(m => m.ProductUpdateComponent)
+            },
             {
                 path:'categories',
                 loadComponent: () => import("./components/categories/categories.component").then(m => m.CategoriesComponent)
