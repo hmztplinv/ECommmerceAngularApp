@@ -1,0 +1,17 @@
+.myFrame {
+    padding: 10px;
+    padding-left: 0px;
+}
+
+ul li {
+    list-style: none;
+    padding: 10px;
+    padding-left: 0px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.active{
+    background-color: rgb(86, 81, 160);
+    color: white;
+}

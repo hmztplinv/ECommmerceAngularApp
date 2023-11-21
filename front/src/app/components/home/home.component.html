@@ -1,5 +1,49 @@
 <app-blank title="Home" sectionTitle="Products">
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-    Placeat accusamus sint maxime, dignissimos aperiam ratione autem excepturi enim neque fugiat! 
-    Eveniet placeat ullam exercitationem ipsa. Harum odio ab necessitatibus veniam!
+    <div class="row">
+        <div class="col-md-3 myFrame">
+            <ul>
+                <li (click)="changeCategory('','All')" [ngClass]="requestModel.categoryName=='All' ? 'active' : ''">All</li>
+                <li (click)="changeCategory(category._id,category.name)" [ngClass]="requestModel.categoryName==category.name ? 'active' : '' " *ngFor="let category of categories">
+                {{category.name}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-8">
+                        <input [(ngModel)]="requestModel.search" type="search" class="form-control" placeholder="Search">
+                    </div>
+                    <div class="col-md-3">
+                        <select [(ngModel)]="requestModel.priceFilter" class="form-control">
+                            <option value="0">Sort by</option>
+                            <option value="1">Incresing Price</option>
+                            <option value="2">Decreasing Price</option>
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-primary" style="margin-left: -20px;">Sort</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            <h4>Laptop</h4>
+                        </div>
+                        <div class="card-body">
+                            <img src="https://media.istockphoto.com/id/479520746/tr/foto%C4%9Fraf/laptop-with-blank-screen-on-white.jpg?s=1024x1024&w=is&k=20&c=uJ7uhxeLqgePpGB7-ROiY5igSWczq1kNugQQw9QQGmw="
+                            width="200" height="170" alt="">
+                            <hr>
+                            <p>Stock : 100</p>
+                            <h6>Price : 1000 TL</h6>
+                            <button class="btn btn-outline-success w-100">Add Basket</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </app-blank>
