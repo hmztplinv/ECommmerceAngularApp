@@ -15,7 +15,7 @@ import { SharedModule } from 'src/app/common/shared/shared.module';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit{
+export class ProductsComponent implements OnInit {
   result: PaginationResultModel<ProductModel[]> = new PaginationResultModel<ProductModel[]>();
   request: RequestModel = new RequestModel();
   product: ProductModel = new ProductModel();
@@ -48,4 +48,22 @@ export class ProductsComponent implements OnInit{
     }
   }
 
+  removeById(id: string) {
+    this.swal.callSwal("Are you sure you want to delete this product?", "warning", "Yes, delete it!", "No, keep it", () => {
+      let model = { _id: id };
+      this._product.removeById(model, res => {
+        this.toastr.success("Product deleted successfully");
+        this.getAll(this.request.pageNumber);
+      })
+    })
+  }
+
+  changeProductStatus(id: string) {
+    let model = { _id: id };
+    this._product.changeActiveStatus(model, res => {
+      this.toastr.success("Product status changed successfully");
+      
+
+    })
+  }
 }
