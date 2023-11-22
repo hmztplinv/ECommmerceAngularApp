@@ -1,0 +1,40 @@
+<app-blank title="My Basket" sectionTitle="List in Basket">
+    <div class="row">
+        <div class="col-md-9">
+            <app-generic-table [heads]='[
+    "#",
+    "Product Image",
+    "Product Name",    
+    "Quantity",
+    "Unit Price",
+    "Total Price",    
+    "Actions"]'>
+    <tr *ngFor="let basket of baskets; let index = index">
+        <td>{{index + 1}}</td>
+        <td>
+            <img [src]="'http://localhost:5000/' + basket?.product[0]?.imageUrls[0]?.path" width="50"/>
+        </td>
+        <td>{{basket?.product[0]?.name}}</td>        
+        <td>{{basket.quantity}}</td>
+        <td>{{basket.price}}</td>
+        <td>{{+(basket.price * basket.quantity).toFixed(2)}} ₺</td>        
+        <td>           
+            <button (click)="removeById(basket._id)" class="btn btn-outline-danger btn-sm mx-1" title="Sil">
+                <i class="fa fa-trash"></i>
+            </button>
+        </td>
+    </tr>
+            </app-generic-table>
+        </div>
+        <div class="col-md-3" style="border: 1px solid #ccc; padding: 10px;">            
+            <h4 class="alert alert-info text-center">Total</h4>
+                <h5 class="alert alert-info text-center">
+                    Total Prica: {{ sum }} ₺
+                </h5>
+            <button *ngIf="baskets.length > 0" class="btn btn-primary w-100">
+                <i class="fa fa-shopping-cart"></i> Buy
+            </button>
+        </div>
+
+    </div>
+</app-blank>

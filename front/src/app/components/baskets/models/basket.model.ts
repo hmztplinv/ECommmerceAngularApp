@@ -4,7 +4,7 @@ export class BasketModel{
     _id:string='';
     userId:string='';
     productId:string='';
-    products:ProductModel[]=[];
+    product:ProductModel[]=[];
     quantity:number=1;
     price:number=0;
 }
