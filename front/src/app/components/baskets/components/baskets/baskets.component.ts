@@ -5,6 +5,8 @@ import { BasketModel } from '../../models/basket.model';
 import { BasketService } from '../../services/basket.service';
 import { ToastrService } from 'ngx-toastr';
 import { SwalService } from 'src/app/common/services/swal.service';
+import { OrderService } from 'src/app/components/orders/services/order.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-baskets',
@@ -20,7 +22,7 @@ export class BasketsComponent implements OnInit{
 
   constructor(private _basket: BasketService,
   private _toastr: ToastrService,
-  private _swal: SwalService) { }
+  private _swal: SwalService,private orderService:OrderService,private router:Router) { }
 
   ngOnInit(): void {
     this.getAll();
@@ -49,6 +51,15 @@ export class BasketsComponent implements OnInit{
         this.getAll();
       });
     })
+  }
+
+  createOrder(){
+    this.orderService.create(res=>{
+      this._toastr.info(res.message);
+      this.getAll();
+      this.router.navigateByUrl("/orders");
+
+    });
   }
 
 }

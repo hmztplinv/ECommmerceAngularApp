@@ -27,11 +27,11 @@
             </app-generic-table>
         </div>
         <div class="col-md-3" style="border: 1px solid #ccc; padding: 10px;">            
-            <h4 class="alert alert-info text-center">Total</h4>
-                <h5 class="alert alert-info text-center">
+            <h5 class="alert alert-info text-center">Total</h5>
+                <h6 class="alert alert-info text-center">
                     Total Prica: {{ sum }} ₺
-                </h5>
-            <button *ngIf="baskets.length > 0" class="btn btn-primary w-100">
+                </h6>
+            <button (click)="createOrder()" *ngIf="baskets.length > 0" class="btn btn-primary w-100">
                 <i class="fa fa-shopping-cart"></i> Buy
             </button>
         </div>

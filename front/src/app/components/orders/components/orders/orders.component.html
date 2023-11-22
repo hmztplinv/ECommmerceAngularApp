@@ -1,0 +1,25 @@
+<app-blank title="My Orders" sectionTitle="List in Orders">
+
+            <app-generic-table [heads]='[
+    "#",
+    "Product Image",
+    "Product Name",    
+    "Quantity",
+    "Order Date",
+    "Unit Price",
+    "Total Price"]'>
+    <tr *ngFor="let order of orders; let index = index">
+        <td>{{index + 1}}</td>
+        <td>
+            <img [src]="'http://localhost:5000/' + order?.product[0]?.imageUrls[0]?.path" width="50"/>
+        </td>
+        <td>{{order?.product[0]?.name}}</td>        
+        <td>{{order.quantity}}</td>
+        <td>{{order.createdDate | date:'dd/MM/yyyy'}}</td>        
+        <td>{{order.price}}</td>
+        <td>{{+(order.price * order.quantity).toFixed(2)}} ₺</td>
+
+    </tr>
+            </app-generic-table>
+    
+</app-blank>
